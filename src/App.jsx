@@ -9,8 +9,12 @@ const menu = [
 function App() {
     // ✅ Load cart from localStorage (PRO METHOD)
     const [cart, setCart] = useState(() => {
-        const saved = localStorage.getItem("cart");
-        return saved ? JSON.parse(saved) : [];
+        try {
+            const saved = localStorage.getItem("cart");
+            return saved ? JSON.parse(saved) : [];
+        } catch (e) {
+            return [];
+        }
     });
 
     // 🔥 ADD TO CART
